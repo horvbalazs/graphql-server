@@ -1,8 +1,9 @@
-import {ApolloServer} from '@apollo/server';
-import { startStandaloneServer } from '@apollo/server/standalone';
+import { createServer } from './server';
 
-const server = new ApolloServer({});
+const PORT = 4000;
 
-const {url} = await startStandaloneServer(server, {
-    listen: { port : 4000 },
+createServer().then(server => {
+    server.listen(PORT, () => {
+        console.log(`Listening at http://localhost:${PORT}/graphql`);
+    });
 });

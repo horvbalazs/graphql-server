@@ -1,18 +1,36 @@
 {
   "name": "graphql-server",
   "version": "1.0.0",
-  "description": "\"# graphql-server\"",
-  "main": "index.js",
+  "description": "",
   "scripts": {
-    "build": "tsc",
+    "clean": "rimraf dist && rimraf src/generated",
+    "generate": "graphql-codegen --config codegen.yml",
+    "build": "npm run clean && npm run generate && tsc",
+    "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "type": "module",
+  "eslintConfig": {
+    "ignorePatterns": [
+      "dist/**/*.js"
+    ]
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@apollo/server": "^4.9.5",
+    "@prisma/client": "^5.5.2",
+    "apollo-server-express": "^3.12.1",
+    "express": "^4.18.2",
     "graphql": "^16.8.1",
     "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "@graphql-codegen/add": "^5.0.0",
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/introspection": "^4.0.0",
+    "@graphql-codegen/typescript": "^4.0.1",
+    "@graphql-codegen/typescript-resolvers": "^4.0.1",
+    "@types/express-serve-static-core": "^4.17.41",
+    "prisma": "^5.5.2",
+    "rimraf": "^3.0.2"
   }
 }
